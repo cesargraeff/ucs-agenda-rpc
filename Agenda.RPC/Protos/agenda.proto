@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "Agenda.RPC";
+
+package agenda;
+
+service Agenda {
+  rpc Create (Contato) returns (Empty);
+  rpc Update (Contato) returns (Empty);
+  rpc Delete (SearchRequest) returns (Empty);
+  rpc Get (SearchRequest) returns (Contato);
+  rpc List (Empty) returns (Contatos);
+  rpc Search (SearchRequest) returns (Contatos);
+}
+
+message Empty{}
+
+message SearchRequest{
+  string search = 1;
+}
+
+message Contato {
+  int32 id = 1;
+  string nome = 2;
+  string telefone = 3;
+  string email = 4;
+  string endereco = 5;
+}
+
+message Contatos{
+  repeated Contato contatos = 1;
+}
